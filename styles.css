@@ -1,0 +1,169 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #E0B2C6;
+    color: white;
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    flex: 1;
+}
+
+.logo-container h1 {
+    margin: 0;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-container input[type="text"] {
+    padding: 5px;
+}
+
+.menu-container button {
+    padding: 5px 10px;
+    background-color: white;
+    color: #E0B2C6;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-container .menu-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    fill: white; /* 아이콘 색상을 흰색으로 설정 */
+}
+
+.menu-bar {
+    display: flex;
+    justify-content: space-between; /* 가운데 정렬 */
+    align-items: center;
+    background-color: #E0B2C6;
+    padding: 10px 0;
+    margin: 0;
+    gap: 10px; /* 버튼 사이 간격 */
+}
+
+.menu-bar button {
+    background-color: #E0B2C6; /* 헤더와 동일한 배경색 */
+    color: white; /* 흰색 텍스트 */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu-bar button:hover {
+    background-color: #d3a6b4; /* 호버 시 조금 더 진한 색상 */
+}
+
+.main-menu {
+    display: flex;
+    gap: 50px; /* 검색과 즐겨찾기 사이의 간격을 늘립니다. */
+}
+
+.main-menu .menu-container {
+    margin-left: auto; /* 즐겨찾기를 오른쪽으로 밀어줍니다. */
+}
+
+main {
+    padding: 20px;
+    margin: 0 60px; /* 양쪽 여백 설정 */
+}
+
+.section {
+    margin-bottom: 20px; /* 섹션 간의 간격 */
+}
+
+.notice-table,
+.top10-table,
+.recommend-table,
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* 열 너비 고정 */
+    background-color: #f9f9f9; /* 표의 배경색 */
+    color: #333; /* 표의 텍스트 색상 */
+    padding: 0 60px; /* 양쪽 여백 설정 */
+}
+
+.notice-table td,
+.top10-table td,
+.recommend-table td,
+.category-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.top10-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.top10-buttons button {
+    background-color: transparent;
+    border: none;
+    color: #555;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.top10-buttons button:hover {
+    background-color: #ccc;
+}
+
+.favorite-document-table,
+.favorite-content-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 0 60px;
+}
+
+.favorite-document-table td,
+.favorite-content-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.top10-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.top10-buttons button {
+    background-color: transparent;
+    border: none;
+    color: #555;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.top10-buttons button:hover {
+    background-color: #ccc;
+}

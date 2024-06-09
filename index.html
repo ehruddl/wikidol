@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIKidol</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <h1 onclick="showMain()">WIKidol</h1>
+            </div>
+            <div class="menu-bar">
+                <button class="menu-button" onclick="showMain()">MAIN</button>
+                <button class="menu-button" onclick="showCategory()">카테고리</button>
+                <button class="menu-button" onclick="showFavorites()">즐겨찾기</button>
+                <div class="menu-container">
+                    <input type="text" id="searchInput" placeholder="검색">
+                    <button onclick="highlightCategories()">검색</button>
+                    <a href="#"><svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <circle cx="12" cy="4" r="2"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                        <circle cx="12" cy="20" r="2"></circle>
+                    </svg></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="content">
+        <!-- 여기에 콘텐츠가 동적으로 삽입됩니다. -->
+    </main>
+
+    <script>
+        function showMain() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="section">
+                    <h2>공지사항</h2>
+                    <table class="notice-table">
+                        <tr><td>공지사항 1</td></tr>
+                        <tr><td>공지사항 2</td></tr>
+                        <tr><td>공지사항 3</td></tr>
+                        <tr><td>공지사항 4</td></tr>
+                    </table>
+                </div>
+                <div class="section">
+                    <h2>주간 TOP 10</h2>
+                    <div class="top10-wrapper">
+                        <div class="top10-buttons">
+                            <button onclick="showTop10Documents()">문서</button>
+                            <button onclick="showTop10Contents()">콘텐츠</button>
+                        </div>
+                        <table class="top10-table">
+                            <tr><td>1위</td><td>6위</td></tr>
+                            <tr><td>2위</td><td>7위</td></tr>
+                            <tr><td>3위</td><td>8위</td></tr>
+                            <tr><td>4위</td><td>9위</td></tr>
+                            <tr><td>5위</td><td>10위</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="section">
+                    <h2>추천</h2>
+                    <div class="top10-wrapper">
+                        <div class="top10-buttons">
+                            <button onclick="showTop10Documents()">문서</button>
+                            <button onclick="showTop10Contents()">콘텐츠</button>
+                        </div>
+                        <table class="recommend-table">
+                            <tr><td>추천 1</td><td>추천 6</td></tr>
+                            <tr><td>추천 2</td><td>추천 7</td></tr>
+                            <tr><td>추천 3</td><td>추천 8</td></tr>
+                            <tr><td>추천 4</td><td>추천 9</td></tr>
+                            <tr><td>추천 5</td><td>추천 10</td></tr>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showCategory() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="section">
+                    <h2>카테고리</h2>
+                    <table class="category-table" id="categoryTable">
+                        ${generateCategoryTable()}
+                    </table>
+                </div>
+            `;
+        }
+
+        function showFavorites() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="section">
+                    <h2>즐겨찾기한 문서</h2>
+                    <table class="favorite-document-table">
+                        <tr><td>즐겨찾기한 문서 1</td></tr>
+                        <tr><td>즐겨찾기한 문서 2</td></tr>
+                        <tr><td>즐겨찾기한 문서 3</td></tr>
+                    </table>
+                </div>
+                <div class="section">
+                    <h2>즐겨찾기한 콘텐츠</h2>
+                    <table class="favorite-content-table" onclick="showContentDetails('콘텐츠명')">
+                        <tr><td>즐겨찾기한 콘텐츠 1</td></tr>
+                        <tr><td>즐겨찾기한 콘텐츠 2</td></tr>
+                        <tr><td>즐겨찾기한 콘텐츠 3</td></tr>
+                    </table>
+                </div>
+            `;
+        }
+
+        // 페이지 로드 시 showMain() 함수 자동 호출
+        document.addEventListener("DOMContentLoaded", function() {
+            showMain();
+        });
+
+        // 카테고리 표 생성 함수
+        function generateCategoryTable() {
+            const idolGroups = [
+                "BIGBANG", "BTS", "EXO", "TWICE",
+                "Apink", "Wanna One", "PENTAGON", "2PM",
+                "EXID", "WINNER", "KARD", "OH MY GIRL",
+                "T-ARA", "SECRET", "MAMAMOO", "MONSTA X",
+                "ITZY", "GOT7", "Red Velvet", "BLACKPINK",
+                "SEVENTEEN", "IU", "SHINee", "NCT",
+                "Super Junior", "GFRIEND", "TXT", "ASTRO",
+                "Stray Kids", "VIXX"
+            ];
+            idolGroups.sort(); // 아이돌 그룹 이름을 오름차순으로 정렬
+
+            let tableHTML = '';
+            for (let i = 0; i < idolGroups.length; i++) {
+                if (i % 4 === 0) {
+                    tableHTML += '<tr>';
+                }
+                tableHTML += `<td onclick="showGroupInfo('${idolGroups[i]}')">${idolGroups[i]}</td>`;
+                if (i % 4 === 3 || i === idolGroups.length - 1) {
+                    tableHTML += '</tr>';
+                }
+            }
+            return tableHTML;
+        }
+
+        // 아이돌 그룹 정보 표시 함수
+        function showGroupInfo(groupName) {
+            alert(`아이돌 그룹 "${groupName}"의 정보를 표시합니다.`);
+            // 여기에 그룹 정보를 표시하는 코드를 추가하세요.
+        }
+        // 입력된 검색어를 기준으로 일치하는 셀을 강조 표시하는 함수
+        function highlightCategories() {
+            const searchTerm = document.getElementById('searchInput').value.toUpperCase(); // 대소문자 구분 없이 검색
+            const table = document.getElementById('categoryTable');
+            const cells = table.getElementsByTagName('td');
+            for (let cell of cells) {
+                const text = cell.textContent.toUpperCase(); // 대소문자 구분 없이 텍스트 가져오기
+                if (text.includes(searchTerm)) {
+                    cell.classList.add('highlight'); // 검색어와 일치하는 셀에 클래스 추가
+                } else {
+                    cell.classList.remove('highlight'); // 일치하지 않는 셀에서 클래스 제거
+                }
+            }   
+        }
+    </script>
+</body>
+</html>
